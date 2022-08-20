@@ -2,9 +2,9 @@ public class Test
 {
     public static void main(String[] args)
     {
-        String cool = "Welcome";
+        String greeting = "Welcome";
         System.out.println("Jason");
         System.out.println("Junior");
-        System.out.printf(cool);
+        System.out.printf(greeting);
     }
 }
