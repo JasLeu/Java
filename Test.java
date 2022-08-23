@@ -4,6 +4,5 @@ public class Test
     {
         System.out.println("Jason");
         System.out.println("Junior");
-        
     }
 }
