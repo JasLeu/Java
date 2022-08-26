@@ -12,5 +12,10 @@ public class NumberRiddle {
         System.out.println("num = " + numb);
         numb -= init;
         System.out.println("num = " + numb);
+
+        int total = 25;
+        int numScores = 3;
+        double ave = total/numScores;
+        System.out.println(ave);
     }
 }
