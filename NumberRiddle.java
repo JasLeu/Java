@@ -17,5 +17,6 @@ public class NumberRiddle {
         int numScores = 3;
         double ave = total/numScores;
         System.out.println(ave);
+        
     }
 }
