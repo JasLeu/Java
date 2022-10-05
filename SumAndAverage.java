@@ -1,7 +1,6 @@
 import java.util.Scanner;
 
 public class SumAndAverage {
-    
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int sum = 0;
@@ -11,7 +10,6 @@ public class SumAndAverage {
         while (!input.equals("q")) {
             System.out.print("Enter a number (q to stop): ");
             input = sc.nextLine();
-            
             try {
                 sum += Integer.parseInt(input);
                 amountOfInputs++;
@@ -20,12 +18,9 @@ public class SumAndAverage {
                     System.out.println("Must be a valid number!\n");
                 }
             } 
-            
-            
         }
 
         System.out.println("\nSum: " + sum + "\nAverage: " + sum/amountOfInputs + "\n");
         sc.close();
     }
-
 }
