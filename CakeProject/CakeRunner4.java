@@ -9,6 +9,6 @@ public class CakeRunner4 {
         Cake myCake = new Cake(t);
         Cake mySecondCake = new Cake(2);
         Cake myThirdCake = new Cake();
-        System.out.println("In main, after new Cake, actual param t=" + t);
+        System.out.println("In main, after new Cake, actual param t=" + t + myCake + mySecondCake + myThirdCake);
     }
 }

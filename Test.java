@@ -17,7 +17,7 @@ public class Test
         System.out.print(greeting);
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern(("MM/dd/yyyy HH:mm"));
         LocalDateTime now = LocalDateTime.now();
-        //System.out.print(", today's date is " + dtf.format(now));
+        System.out.print(", today's date is " + dtf.format(now).substring(0, 10) + ", " + dtf.format(now).substring(11) + ".");
 
         
 
