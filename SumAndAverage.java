@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class SumAndAverage {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int sum = 0;
+        double sum = 0;
         int amountOfInputs = 0;
         String input = "";
         
@@ -11,7 +11,7 @@ public class SumAndAverage {
             System.out.print("Enter a number (q to stop): ");
             input = sc.nextLine();
             try {
-                sum += Integer.parseInt(input);
+                sum += Double.parseDouble(input);
                 amountOfInputs++;
             } catch(Exception e) {
                 if (!input.equals("q")) {
