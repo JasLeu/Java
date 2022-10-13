@@ -1,30 +1,28 @@
 // import java.time.format.DateTimeFormatter;
 // import java.time.LocalDateTime;
-import java.util.Scanner;
+
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Scanner;
+
 public class Test
 {
-
-    /*
-    * Activity 2.4.3
-    */
-    public static void main(String[] args)
-    {
+  public static void main(String[] args)
+  {
     Scanner input = new Scanner(System.in);
-    ArrayList<String> vowels = new ArrayList<String>();
-
-    Collections.addAll(vowels, "a", "e", "i", "o", "u");
     System.out.print("String: ");
-    String userInput = input.nextLine();
+    String stringInput = input.nextLine();
+    int i = 0;
 
-    for (int i = 0; i < userInput.length(); i++) {
-        if (vowels.contains(userInput.substring(i, i+1))) {
-            int index = userInput.indexOf(userInput.substring(i, i+1));
-            userInput = userInput.substring(0, index) + userInput.substring(index+1);
+    while (i < stringInput.length()-1) {
+        String doubleSpace = stringInput.substring(i, i+2);
+        if (doubleSpace.equals("  ")) {
+            stringInput = stringInput.substring(0, i) + stringInput.substring(i+1);
         }
+        i++;
     }
-    System.out.print(userInput);
-    input.close();
-    }
+
+    System.out.println(stringInput);
+  }
+  
 }
