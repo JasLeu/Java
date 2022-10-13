@@ -1,25 +1,27 @@
-import java.time.format.DateTimeFormatter;
-import java.time.LocalDateTime;
+// import java.time.format.DateTimeFormatter;
+// import java.time.LocalDateTime;
+import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.Collections;
 public class Test
 {
 
-    public double getPresentValue(int pmt, int i, int n)
-    {
-        double rate = (double)i/100;
-        double tmp = Math.pow((1+rate),-n);
-        double value = pmt*(1/tmp)/rate;
-        return value;
-    }
-    
+    /*
+    * Activity 2.4.3
+    */
     public static void main(String[] args)
     {
-        String greeting = "Welcome";
-        System.out.print(greeting);
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern(("MM/dd/yyyy HH:mm"));
-        LocalDateTime now = LocalDateTime.now();
-        System.out.print(", today's date is " + dtf.format(now).substring(0, 10) + ", " + dtf.format(now).substring(11) + ".");
-
-        
-
+    Scanner input = new Scanner(System.in);
+    ArrayList<String> vowels = new ArrayList<String>();
+    Collections.addAll(vowels, "a", "e", "i", "o", "u");
+    String userInput = input.nextLine();
+    for (int i = 0; i < userInput.length(); i++) {
+        if (vowels.contains(userInput.substring(i, i+1))) {
+            int index = userInput.indexOf(userInput.substring(i, i+1));
+            userInput = userInput.substring(0, index) + userInput.substring(index+1);
+        }
+    }
+    System.out.print(userInput);
+    input.close();
     }
 }
