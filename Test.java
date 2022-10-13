@@ -7,28 +7,35 @@ import java.util.Scanner;
 
 public class Test
 {
-  public static void main(String[] args)
-  {
-    Scanner input = new Scanner(System.in);
-    ArrayList<String> vowels = new ArrayList<String>();
+    public static void main(String[] args)
+    {
+        Scanner input = new Scanner(System.in);
+        System.out.print("First Input: ");
+        String firstInput = input.nextLine().toLowerCase();
+        System.out.print("Second input: ");
+        String secondInput = input.nextLine().toLowerCase();
+        int i = 0;
+        String output = "";
+        firstInput = firstInput.replaceAll(" ", "");
+        secondInput = secondInput.replaceAll(" ", "");
 
-    Collections.addAll(vowels, "d", "b", "p", "q");
-    System.out.print("String: ");
-    String stringInput = input.nextLine();
-    int i = 0;
-
-    while (i < stringInput.length()-1) {
-        int x = stringInput.indexOf(stringInput.substring(i, i+1));
-        if (vowels.contains(stringInput.substring(x,x+1))) {
-            String newVowel = vowels.get((int)(Math.random()*4));
-            System.out.println(newVowel);
-            stringInput = stringInput.substring(0, i) + newVowel + stringInput.substring(i+1);
+        if (firstInput.length() == secondInput.length()) {
+            for (i = 0; i < firstInput.length();i++) {
+                if (secondInput.contains(firstInput.substring(i, i+1))) {
+                    int x = secondInput.indexOf(firstInput.substring(i, i+1));
+                    secondInput = secondInput.substring(0, x) + secondInput.substring(x + 1);
+                }
+            }
+            if (secondInput.length() == 0) {
+                System.out.println("They are anagrams.");
+            } else {
+                System.out.println("They are not anagrams.");
+            }
+        } else {
+            System.out.println("They are not anagrams.");
         }
-        i++;
+        System.out.println(output);
+        input.close();
     }
-
-    System.out.println(stringInput);
-    input.close();
-  }
   
 }
