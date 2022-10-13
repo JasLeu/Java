@@ -13,8 +13,11 @@ public class Test
     {
     Scanner input = new Scanner(System.in);
     ArrayList<String> vowels = new ArrayList<String>();
+
     Collections.addAll(vowels, "a", "e", "i", "o", "u");
+    System.out.print("String: ");
     String userInput = input.nextLine();
+
     for (int i = 0; i < userInput.length(); i++) {
         if (vowels.contains(userInput.substring(i, i+1))) {
             int index = userInput.indexOf(userInput.substring(i, i+1));
