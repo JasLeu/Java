@@ -1,5 +1,3 @@
-import java.util.Scanner;
-import java.io.File;
 import java.util.*;
 import java.io.*;
 
@@ -12,22 +10,44 @@ public class Review {
   private static HashMap<String, Double> sentiment = new HashMap<String, Double>();
   private static ArrayList<String> posAdjectives = new ArrayList<String>();
   private static ArrayList<String> negAdjectives = new ArrayList<String>();
- 
-  
   private static final String SPACE = " ";
 
-  public static void main(String[] args) 
+  public static void main(String[] args) throws IOException 
   {
-   System.out.println(sentimentVal(sc.nextLine()));
+    System.out.println(totalSentiment("ConsumerLab_Code\\SimpleReview.txt"));
+    // String evaluation = textToString("ConsumerLab_Code\\SimpleReview.txt");
+    // boolean cont = true;
+    // double totalSentiment = 0;
+    // while (cont) {
+    //   try {
+    //     int space = evaluation.indexOf(" ");
+    //     String curWord = evaluation.substring(0, space);
+    //     curWord = removePunctuation(curWord);
+    //     totalSentiment += sentimentVal(curWord);
+    //     evaluation = evaluation.substring(space + 1);
+    //     // System.out.println(totalSentiment);
+    //   } catch (Exception e) {
+    //     cont = false;
+    //   }
+    // }
+    // System.out.printf("%.2f",totalSentiment);
   }
 
   static{
     try {
-      Scanner input = new Scanner(new File("cleanSentiment.csv"));
+      Scanner input = new Scanner(new File("ConsumerLab_Code\\cleanSentiment.csv"));
+      int i = 0;
       while(input.hasNextLine()){
         String[] temp = input.nextLine().split(",");
+        // System.out.println(temp); 
         sentiment.put(temp[0],Double.parseDouble(temp[1]));
-        //System.out.println("added "+ temp[0]+", "+temp[1]);
+        // System.out.println("Success");
+        // System.out.println(sentiment);
+        i++;
+        if (i == 6279) {
+          break;
+        }
+         // System.out.println("added "+ temp[0]+", "+temp[1]);
       }
       input.close();
     }
@@ -38,10 +58,10 @@ public class Review {
   
   //read in the positive adjectives in postiveAdjectives.txt
      try {
-      Scanner input = new Scanner(new File("positiveAdjectives.txt"));
+      Scanner input = new Scanner(new File("ConsumerLab_Code\\positiveAdjectives.txt"));
       while(input.hasNextLine()){
         String temp = input.nextLine().trim();
-        System.out.println(temp);
+        // System.out.println(temp);
         posAdjectives.add(temp);
       }
       input.close();
@@ -52,7 +72,7 @@ public class Review {
  
   //read in the negative adjectives in negativeAdjectives.txt
      try {
-      Scanner input = new Scanner(new File("negativeAdjectives.txt"));
+      Scanner input = new Scanner(new File("ConsumerLab_Code\\negativeAdjectives.txt"));
       while(input.hasNextLine()){
         negAdjectives.add(input.nextLine().trim());
       }
@@ -105,13 +125,23 @@ public class Review {
   public static double totalSentiment(String fileName) {
     boolean cont = true;
     double total = 0;
-    System.out.println(textToString("SimpleReview.txt"));
     
-    // String review = sc.nextLine();
+    String evaluation = textToString(fileName);
     while (cont) {
-      
+      try {
+        int space = evaluation.indexOf(" ");
+        String curWord = evaluation.substring(0, space);
+        curWord = removePunctuation(curWord);
+        total += sentimentVal(curWord);
+        evaluation = evaluation.substring(space + 1);
+      } catch (Exception e) {
+        cont = false;
+      }
     }
-
+    String stringTotal = Double.toString(total);
+    int indexOfZero = stringTotal.indexOf("000");
+    stringTotal = stringTotal.substring(0, indexOfZero);
+    total = Double.parseDouble(stringTotal);
     return total;
   }
 
