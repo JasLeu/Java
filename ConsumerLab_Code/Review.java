@@ -15,22 +15,7 @@ public class Review {
   public static void main(String[] args) throws IOException 
   {
     System.out.println(totalSentiment("ConsumerLab_Code\\SimpleReview.txt"));
-    // String evaluation = textToString("ConsumerLab_Code\\SimpleReview.txt");
-    // boolean cont = true;
-    // double totalSentiment = 0;
-    // while (cont) {
-    //   try {
-    //     int space = evaluation.indexOf(" ");
-    //     String curWord = evaluation.substring(0, space);
-    //     curWord = removePunctuation(curWord);
-    //     totalSentiment += sentimentVal(curWord);
-    //     evaluation = evaluation.substring(space + 1);
-    //     // System.out.println(totalSentiment);
-    //   } catch (Exception e) {
-    //     cont = false;
-    //   }
-    // }
-    // System.out.printf("%.2f",totalSentiment);
+    System.out.println(starRating("ConsumerLab_Code\\SimpleReview.txt"));
   }
 
   static{
@@ -122,11 +107,22 @@ public class Review {
     }
   }
   
+  /** Method that determines the total sentimental value by combining the sentiment value
+   *  of every word in the txt file
+   * 
+   *  Preconditions: txt file must exist
+   *  Postconditions: txt file still exists with no changes made while the total sentiment value is returned
+   * 
+   * @param fileName - name of the txt file to be assessed
+   * @returns - the total sentiment value of the words inside the file used as the actual parameter
+   */
   public static double totalSentiment(String fileName) {
+    // declares and assigns parameters to be used
     boolean cont = true;
     double total = 0;
-    
     String evaluation = textToString(fileName);
+
+    // checks the sentimental value of every word separated by " " and adds it to the total
     while (cont) {
       try {
         int space = evaluation.indexOf(" ");
@@ -138,11 +134,42 @@ public class Review {
         cont = false;
       }
     }
+
+    // truncates the long zeroes such as -2.9200000000000004 and returns the final number
     String stringTotal = Double.toString(total);
-    int indexOfZero = stringTotal.indexOf("000");
-    stringTotal = stringTotal.substring(0, indexOfZero);
+    int indexOfZero = stringTotal.indexOf("000") + stringTotal.indexOf("999");
+    if (stringTotal.substring(0, 1).equals("-")) {
+      indexOfZero++;
+    }
+    try {
+      stringTotal = stringTotal.substring(0, indexOfZero);
+    } catch (Exception e) {}
     total = Double.parseDouble(stringTotal);
     return total;
+  }
+
+  /** Method that gives the star rating based on the total sentiment value
+   * 
+   *  Preconditions: txt file must exist
+   *  Postconditions: txt file still exists with no changes made while the star rating is returned
+   * @param fileName - name of the txt file to be assessed.
+   * @returns - the star rating of the review
+   */
+  public static int starRating(String fileName) {
+    double totalSentiment = totalSentiment(fileName);
+
+    // conditional depending on the totalSentiment; the higher the totalSentiment the higher the starRating
+    if (totalSentiment > 25) {
+      return 4;
+    } else if (totalSentiment > 15) {
+      return 3;
+    } else if (totalSentiment > 5) {
+      return 2;
+    } else if (totalSentiment > -5) {
+      return 1;
+    } else {
+      return 0;
+    }
   }
 
   /**
