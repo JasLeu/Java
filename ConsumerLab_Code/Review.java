@@ -15,7 +15,7 @@ public class Review {
   public static void main(String[] args) throws IOException 
   {
     System.out.println(totalSentiment("ConsumerLab_Code\\SimpleReview.txt"));
-    System.out.println(starRating("ConsumerLab_Code\\SimpleReview.txt"));
+    System.out.println(fakeReview("ConsumerLab_Code\\SimpleReview.txt"));
   }
 
   static{
@@ -188,7 +188,7 @@ public class Review {
     return punc;
   }
 
-      /**
+  /**
    * Returns the word after removing any beginning or ending punctuation
    */
   public static String removePunctuation( String word )
@@ -237,5 +237,28 @@ public class Review {
     } else {
       return randomNegativeAdj();
     }
+  }
+
+  /** Method to generate a fake review
+   * 
+   *  Preconditions: txt file must exist
+   *  Postconditions: txt file still exists with no changes made while the fake review is returned
+   * 
+   *  @param fileName - name of the txt file to be assessed.
+   *  @returns - a fake review based on a format
+   */
+  public static String fakeReview(String fileName) {
+    String annotatedReview = textToString(fileName);
+    while (true) {
+      int asterisk = annotatedReview.indexOf("*");
+      int space = annotatedReview.indexOf(" ", asterisk);
+      if (asterisk == -1) {
+        return annotatedReview;
+      }
+      String segment = annotatedReview.substring(asterisk + 1, space);
+      annotatedReview = annotatedReview.replace("*" + segment, randomAdjective());
+    }
+    
+    
   }
 }
