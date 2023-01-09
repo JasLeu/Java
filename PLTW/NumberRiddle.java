@@ -1,4 +1,4 @@
-package PLTW;
+
 public class NumberRiddle {
     public static void main(String[] args) {
         int init = 1;
