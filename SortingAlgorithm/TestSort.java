@@ -50,14 +50,34 @@ public class TestSort
 
     // Test the integer insertion sort
     
-    testInsertionInt = SortingAlgorithms.insertionSortInt(intList);
-    System.out.println(testInsertionInt);
+    //testInsertionInt = SortingAlgorithms.insertionSortInt(intList);
+    //System.out.println(testInsertionInt);
    
 
     // Test the double insertion sort
-    /*
+    
     testInsertionDouble = SortingAlgorithms.insertionSortDouble(doubleList);
     System.out.println(testInsertionDouble);
-    */
+    
+
+/*
+    String board[][][] = {{{"cat", "dog"}, {"ram", "sheep"}}, {{"pig", "monkey"}, {"deer", "hippo"}}};
+    System.out.println(board[1][1][0]); */
+    /*{ {"close", "quarter"},
+                        {"moon", "rock"},
+                        {"band", "stand"},
+                        {"out", "shine"}  }; 
+    for (int i = 0; i < board.length; i++) {
+      for (int x = 0; x<board[i].length; x++) {
+        
+        //  System.out.println("(" +i + ", " + x + ")");
+        
+        System.out.print(board[i][x] + ", ");
+      }
+      System.out.println();
+      System.out.println(java.util.Arrays.toString(board[i]));
+    }*/
+    
+    
   }
 }
