@@ -16,7 +16,7 @@ public class SortingAlgorithms
   {
     /* your code goes here */
     
-    
+    // selection
     // Use a for loop to iterate through all the values in the list. This loop
     // will keep track of which value will be swapped with the lowest value.
     for (int i = 0; i < intList.size() - 1; i++)
@@ -97,7 +97,15 @@ public class SortingAlgorithms
   public static ArrayList<Double> selectionSortDouble(ArrayList<Double> doubleList)
   {
     /* your code goes here */
-    
+    for (int i = 0; i < doubleList.size(); i++) {
+      double curV = doubleList.get(i);
+      for (int j = i + 1; j < doubleList.size();j++) {
+        if (curV > doubleList.get(j)) {
+          doubleList.set(i, doubleList.get(j));
+          doubleList.set(j, curV);
+        }
+      }
+    }
     return doubleList;
   }
 
@@ -109,7 +117,16 @@ public class SortingAlgorithms
   public static ArrayList<Double> insertionSortDouble(ArrayList<Double> doubleList)
   {
     /* your code goes here */
-    
+    for (int i = 1; i < doubleList.size(); i++) {
+      double num = doubleList.get(i);
+      int prevI = i-1;
+      while (i >= 0) {
+        if (num > doubleList.get(i)) {
+          
+        }
+        x--;
+      }
+    }
     return doubleList;
   }
 
