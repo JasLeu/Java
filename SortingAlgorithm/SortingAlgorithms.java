@@ -124,7 +124,7 @@ public class SortingAlgorithms
         if (num > doubleList.get(i)) {
           
         }
-        x--;
+        i--;
       }
     }
     return doubleList;
