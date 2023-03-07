@@ -5,10 +5,18 @@ public class PixelPlayground {
     
     /**
      * Removes the blue from the picture.
+     * @param <Picture>
      */
     public static Picture zeroBlue(Picture p) {
         Picture newPic = p;
-        //TO DO
+        Pixel[][] pixels = newPic.getPixels2D();
+        
+        for (Pixel[] row : pixels) {
+            for (Pixel actualPixel : row) {
+                actualPixel.setBlue(0);
+            }
+        }
+
         return newPic;
     }
 
