@@ -1,4 +1,4 @@
-package SteganographyLab.StegoLab_Code;
+//package SteganographyLab.StegoLab_Code;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
