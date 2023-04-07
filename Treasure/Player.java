@@ -2,7 +2,7 @@ public class Player {
     private String name;
     private int numTreasures;
 
-    public void setName(String n) {
+    public Player (String n) {
         name = n;
     }
 

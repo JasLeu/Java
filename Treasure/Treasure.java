@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.lang.Math;
 
-public class Treasure extends Player {
+public class Treasure {
     private int numTreasures = 0;
     private String location;
     private Board b = new Board();
