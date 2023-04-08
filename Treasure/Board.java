@@ -1,18 +1,13 @@
 import java.lang.Math;
-import java.util.ArrayList;
-import java.util.Arrays;
-
+//import java.util.Scanner;
 public class Board {
-    //instance variables 
+
+    // Instance variables 
     private int x, y;
-    //Pirate, Captain, Knight, Octopus
-    //private ArrayList<Player> players = new ArrayList<Player>(Arrays.asList("P", "C", "K", "O"));
-    private Player[][] board = new Player[7][7];
+    //private Player[][] board = new Player[7][7];
+    //private Scanner sc = new Scanner(System.in);
 
-
-
-    //ArrayList<ArrayList> board;
-    
+    // Constructors
     public Board () {
         x = (int) Math.random() * 50;
         y = (int) Math.random() * 50;
@@ -23,6 +18,7 @@ public class Board {
         this.y = y;
     }
 
+    // Getters
     public int getDifX(int x) {
         return x - this.x;
     }
@@ -31,12 +27,12 @@ public class Board {
         return y -  this.y;
     }
 
+    // Setters
     public void setPlayer() {
-        board[0][0] = new Rook();
-        board[0][2] = new Bishop();
+        
     }
 
-    public  void play() {
-        Player p = new Player(null);
+    public static void play() {
+        //Player p = new Player();
     }
 }

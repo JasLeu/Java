@@ -1,14 +1,12 @@
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.lang.Math;
 
 public class Treasure {
     private int numTreasures = 0;
     private String location;
     private Board b = new Board();
+    private int currentPositionX;
+    private int currentPositionY;
 
-    private ArrayList<String> locations = new ArrayList<String>(Arrays.asList("Lush Woods", "Precious Grove", "Misty Brook Covert","Arborgar Woods", "Parallel Forest"));
-    
     public void getClue(int x, int y) {
         if (b.getDifX(x) < 0) {
             System.out.println("The treasure is more to the right.");
@@ -26,15 +24,15 @@ public class Treasure {
     }
 
     public void setLocation() {
-        int locationNum = (int) (Math.random() * locations.size());
-        location = locations.get(locationNum);
+        currentPositionX = (int) Math.random() * 50;
+        currentPositionY = (int) Math.random() * 50;
 
     }
 
     public void addTreasure() {
         numTreasures++;
     }
-    
+
     public boolean checkInput() {
         return true;
 

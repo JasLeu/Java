@@ -1,11 +1,14 @@
+import java.util.Scanner;
 public class Player {
     private String name;
     private int currentPositionX;
     private int currentPositionY;
-    private int numTreasures;
+    private int numTreasures = 0;
+    private Scanner sc = new Scanner(System.in);
 
-    public Player (String n) {
-        name = n;
+    public Player () {
+        System.out.print("Name: ");
+        name = sc.nextLine();
         currentPositionX = (int) Math.random() * 50;
         currentPositionY = (int) Math.random() * 50;
     }
