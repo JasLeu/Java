@@ -13,7 +13,7 @@ public class Treasure {
         if (b.getDifX(x) < 0) {
             System.out.println("The treasure is more to the right.");
         } else {
-            System.out.println("The treasure is more to the left")
+            System.out.println("The treasure is more to the left");
         }
     }
 
@@ -31,8 +31,12 @@ public class Treasure {
 
     }
 
+    public void addTreasure() {
+        numTreasures++;
+    }
+    
     public boolean checkInput() {
-
+        return true;
 
     }
 }

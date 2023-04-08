@@ -6,6 +6,8 @@ public class Player {
 
     public Player (String n) {
         name = n;
+        currentPositionX = (int) Math.random() * 50;
+        currentPositionY = (int) Math.random() * 50;
     }
 
     public void addTreasure() {

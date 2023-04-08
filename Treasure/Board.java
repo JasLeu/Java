@@ -13,10 +13,10 @@ public class Board {
 
     //ArrayList<ArrayList> board;
     
-    /* public Board () {
+    public Board () {
         x = (int) Math.random() * 50;
         y = (int) Math.random() * 50;
-    } */
+    }
     
     public Board (int x, int y) {
         this.x = x;
@@ -32,16 +32,11 @@ public class Board {
     }
 
     public void setPlayer() {
-        board[0][3] = new Octopus();
-        board[0][0] = new Pirate();
-        board[0][1] = new Knight();
-        board[0][2] = new Captain();
-        board[0][6] = new Pirate();
-        board[0][5] = new Knight();
-        board[0][4] = new Captain();
+        board[0][0] = new Rook();
+        board[0][2] = new Bishop();
     }
 
-    public static void main(String[] args) {
-        
+    public  void play() {
+        Player p = new Player(null);
     }
 }
