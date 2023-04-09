@@ -1,5 +1,5 @@
 import java.util.Scanner;
-public class Player {
+public class Player extends Movement {
     private String name;
     private int currentPositionX;
     private int currentPositionY;
@@ -9,8 +9,8 @@ public class Player {
     public Player () {
         System.out.print("Name: ");
         name = sc.nextLine();
-        currentPositionX = (int) Math.random() * 50;
-        currentPositionY = (int) Math.random() * 50;
+        currentPositionX = (int) (Math.random() * 50);
+        currentPositionY = (int) (Math.random() * 50);
     }
 
     public void addTreasure() {
@@ -35,6 +35,10 @@ public class Player {
 
     public int getCurrentPositionY(){
         return currentPositionY;
+    }
+
+    public void getCoord() {
+        System.out.println("(" + currentPositionX + ", " + currentPositionY + ")");
     }
 
     public String getName() {
