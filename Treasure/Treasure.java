@@ -33,7 +33,7 @@ public class Treasure {
         numTreasures++;
     }
 
-    public boolean checkInput() {
+    public boolean checkInput(String input) {
         return true;
 
     }
