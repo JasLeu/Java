@@ -1,9 +1,9 @@
 
 public class Runner {
     
-    Board b = new Board();
     
     public static void main(String[] args) {
+        Board b = new Board();
         Board.play();
     }
     

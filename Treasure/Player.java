@@ -6,11 +6,11 @@ public class Player {
     private int numTreasures = 0;
     private Scanner sc = new Scanner(System.in);
 
-    public Player () {
-        System.out.print("Name: ");
-        name = sc.nextLine();
-        currentPositionX = (int) Math.random() * 50;
-        currentPositionY = (int) Math.random() * 50;
+    public Player() {
+        //System.out.print("Name: ");
+        //name = sc.nextLine();
+        currentPositionX = (int) (Math.random() * 10);
+        currentPositionY = (int) (Math.random() * 10);
     }
 
     public void addTreasure() {
@@ -26,7 +26,7 @@ public class Player {
     }
 
     public void setCurrentPositionY(int y){
-        currentPositionX = y;
+        currentPositionY = y;
     }
 
     public int getCurrentPositionX(){
