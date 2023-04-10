@@ -1,16 +1,17 @@
 import java.util.Scanner;
-public class Player {
+
+public class Player extends Movement2 {
     private String name;
     private int currentPositionX;
     private int currentPositionY;
     private int numTreasures = 0;
     private Scanner sc = new Scanner(System.in);
 
-    public Player() {
-        //System.out.print("Name: ");
-        //name = sc.nextLine();
-        currentPositionX = (int) (Math.random() * 10);
-        currentPositionY = (int) (Math.random() * 10);
+    public Player () {
+        System.out.print("Name: ");
+        name = sc.nextLine();
+        currentPositionX = (int) (Math.random() * 50);
+        currentPositionY = (int) (Math.random() * 50);
     }
 
     public void addTreasure() {
@@ -35,6 +36,10 @@ public class Player {
 
     public int getCurrentPositionY(){
         return currentPositionY;
+    }
+
+    public void getCoord() {
+        System.out.println("(" + currentPositionX + ", " + currentPositionY + ")");
     }
 
     public String getName() {
