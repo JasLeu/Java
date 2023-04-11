@@ -2,7 +2,7 @@ public class Movement {
     
     // Diagonals
     public static void moveDiagonal(Player p, int amt, String direction){
-            if (amt < 0 && direction.equals("u") || amt > 0 && direction.equals("d")) {
+            if (amt < 0 && (direction.equals("u") || direction.equals("up")) || amt > 0 && (direction.equals("d") || direction.equals("down"))) {
                 p.setCurrentPositionX(p.getCurrentPositionX() + amt);
                 p.setCurrentPositionY(p.getCurrentPositionY() - amt);
             } else {
