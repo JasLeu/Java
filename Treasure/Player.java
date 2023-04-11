@@ -47,6 +47,14 @@ public class Player extends Movement {
         return "(" + currentPositionX + ", " + currentPositionY + ")";
     }
 
+    public void moveDiagonal(int amt, String direction) {
+        super.moveDiagonal(this, amt, direction);
+    }
+
+    public void moveAcross(int amt, String direction) {
+        super.moveAcross(this, amt, direction);
+    }
+    
     public String getName() {
         return name;
     }

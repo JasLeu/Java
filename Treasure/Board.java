@@ -1,5 +1,6 @@
 import java.lang.Math;
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class Board {
 
@@ -12,6 +13,7 @@ public class Board {
     private static Scanner sc = new Scanner(System.in);
     private static Player p;
     private static Treasure t;
+    private static ArrayList<String> treasureLocationStrings = new ArrayList<String>();
 
 
     // Constructors
@@ -38,7 +40,6 @@ public class Board {
 
     }
     
-    //sets treasure location
     public void setTreasure(int x, int y) {
         this.x = x;
         this.y = y;
@@ -136,11 +137,11 @@ public class Board {
             //System.out.println("1");
             spaces = askSpacesToMove();
             //System.out.println("2");
-            Movement.moveDiagonal(p, spaces, direction);
+            p.moveDiagonal(spaces, direction);
         } else {
             direction = askAcross();
             spaces = askSpacesToMove();
-            Movement.moveAcross(p, spaces, direction);        
+            p.moveAcross(spaces, direction);        
         }
 
         
@@ -153,8 +154,10 @@ public class Board {
             System.out.println("You found treasure at " + Treasure.getCoord() + ".");
             t.setLocation();
             System.out.println("You have " + p.treasureAmount() + " piece(s) of treasure. " + (t.treasureAmountGoal() - p.treasureAmount()) + " piece(s) left.");
-            if (p.treasureAmount() != t.treasureAmountGoal())
+            treasureLocationStrings.add(Treasure.getCoord());
+            if (p.treasureAmount() != t.treasureAmountGoal()) {
                 ask();
+            }
         } 
 
         
@@ -176,7 +179,7 @@ public class Board {
             ask();
             
 
-        } else {clearScreen();System.out.println("See you next time...");System.exit(0);}
+        } else {clearScreen();System.out.println("Past Treasure Locations found... ");for (int i = 0; i < treasureLocationStrings.size(); i++) {System.out.println(treasureLocationStrings.get(i));}System.out.println("See you next time...");System.exit(0);}
         
     }
 
