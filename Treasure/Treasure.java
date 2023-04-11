@@ -4,7 +4,6 @@ import java.lang.Math;
 public class Treasure {
     private int numTreasures = 0;
     private static int treasureAmountGoal;
-    private String location;
     private Board b = new Board();
     private static int currentPositionX;
     private static int currentPositionY;
@@ -12,7 +11,7 @@ public class Treasure {
 
     public void getClue(int x, int y) {
         int type = (int) (Math.random()+0.5) * 2;
-        System.out.println((type < 1) ? (b.getDifX(x) < 0) ? "The treasure is more to the right." : "The treasure is more to the left." : (b.getDifY(y) < 0) ? "The treasure is higher." : "The treasure is lower.");
+        System.out.println((type < 1 && b.getDifX(x) != 0) ? (b.getDifX(x) < 0) ? "The treasure is more to the right." : "The treasure is more to the left." : (b.getDifY(y) < 0 && b.getDifY(y) != 0) ? "The treasure is higher." : (b.getDifY(y) > 0) ? "The treasure is lower." : null);
         /* if (b.getDifX(x) < 0) {
             System.out.println("The treasure is more to the right.");
         } else {
@@ -21,7 +20,7 @@ public class Treasure {
         
     }
 
-    public static void setTreasureAmountGoal(int amt) {
+    public void setTreasureAmountGoal(int amt) {
         treasureAmountGoal = amt;
     }
 
@@ -33,7 +32,7 @@ public class Treasure {
         if (Player.getCoord().equals(getCoord())) {
             addTreasure();
             return true;
-        } else {return false;}
+        } else {System.out.println("The treasure's location: (" + currentPositionX + ", " + currentPositionY + ")");return false;}
     }
 
     //
@@ -49,7 +48,6 @@ public class Treasure {
 
 
     public static String getCoord() {
-        System.out.println("The treasure's location: (" + currentPositionX + ", " + currentPositionY + ")");
         return "(" + currentPositionX + ", " + currentPositionY + ")";
     }
 }

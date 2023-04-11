@@ -23,12 +23,12 @@ public class Board {
 
     // Getters
     public int getDifX(int x) {
-        System.out.println("x:" + (x - this.x));
+        //System.out.println("x:" + (x - this.x));
         return x - this.x;
     }
 
     public int getDifY(int y) {
-        System.out.println("y:" + (y - this.y));
+        //System.out.println("y:" + (y - this.y));
         return y -  this.y;
     }
 
@@ -75,7 +75,7 @@ public class Board {
 
     public static boolean checkIfInt(String input) {
         try {
-            int integer = Integer.parseInt(input);
+            Integer.parseInt(input);
             return true; 
         } catch (NumberFormatException e) {
             return false; 
@@ -112,9 +112,9 @@ public class Board {
         String input = sc.nextLine();
         if(Integer.parseInt(input) != 0){
             try {
-                Treasure.setTreasureAmountGoal(Integer.parseInt(input));
+                t.setTreasureAmountGoal(Integer.parseInt(input));
             } catch (Exception e) {
-                Treasure.setTreasureAmountGoal(5);
+                t.setTreasureAmountGoal(5);
             }
             Player.getCoord();
             ask();
@@ -147,13 +147,18 @@ public class Board {
         if (!t.treasureFound(p)) {
             t.getClue(p.getCurrentPositionX(), p.getCurrentPositionY());
             ask();
-        } else if (t.treasureFound(p) && p.treasureAmount() < t.treasureAmountGoal()) {
-            System.out.println("You found treasure at " + Treasure.getCoord());
-        }
+        } else if (p.treasureAmount() < t.treasureAmountGoal()) {
+            p.addTreasure();
+            Board.clearScreen();
+            System.out.println("You found treasure at " + Treasure.getCoord() + ".");
+            t.setLocation();
+            System.out.println("You have " + p.treasureAmount() + " piece(s) of treasure. " + (t.treasureAmountGoal() - p.treasureAmount()) + " piece(s) left.");
+            if (p.treasureAmount() != t.treasureAmountGoal())
+                ask();
+        } 
 
         
-        p.addTreasure();
-        System.out.println("Nice! " + p.getName() + " found " + p.treasureAmount() + " pieces of treasure! Play again? (y for yes, n for no)\n");
+        System.out.println("\nNice! In total, " + p.getName() + " found " + p.treasureAmount() + " piece(s) of treasure! Play again? (y for yes, n for no)\n");
         String ans = sc.nextLine().toLowerCase();
         if (ans.equals("y") || ans.equals("yes")) {
             t.setLocation();
@@ -163,18 +168,24 @@ public class Board {
                 System.out.println("How many treasures this time?\n"); 
                 String input = sc.nextLine();
                     try {
-                        Treasure.setTreasureAmountGoal(p.treasureAmount() + Integer.parseInt(input));
+                        t.setTreasureAmountGoal(p.treasureAmount() + Integer.parseInt(input));
+                        System.out.println("Treasure goal: " + t.treasureAmountGoal());
                         inComplete = false;
                     } catch (Exception e) {}
              }
-            
+            ask();
             
 
-        } else {System.exit(0);}
+        } else {clearScreen();System.out.println("See you next time...");System.exit(0);}
         
     }
 
     public static int randomNum(int range, int min) {
         return (int) (Math.random() * range) + min;
     }
+
+    public static void clearScreen() {  
+        System.out.print("\033[H\033[2J");  
+        System.out.flush();  
+    }  
 }
