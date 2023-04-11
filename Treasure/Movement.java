@@ -3,10 +3,27 @@ public class Movement {
     // Diagonals
     //combined all the diagonal methods
     public static void moveDiagonal(Player p, int amt, String direction){
-        //right, up
-        
-            p.setCurrentPositionX(p.getCurrentPositionX() + amt);
+            if(amt > 0 && direction.equals("u")){
+                p.setCurrentPositionX(p.getCurrentPositionX() + amt);
+                p.setCurrentPositionY(p.getCurrentPositionY() - amt);
+            }else if(amt < 0 && direction.equals("d")){
+                p.setCurrentPositionX(p.getCurrentPositionX() + amt);
+                p.setCurrentPositionY(p.getCurrentPositionY() - amt);
+            }else{
+                p.setCurrentPositionX(p.getCurrentPositionX() + amt);
+                p.setCurrentPositionY(p.getCurrentPositionY() + amt);
+            }
+    }
+
+    //combined all the across methods
+    public static void moveAcross(Player p, int amt, String direction){
+        //vertical, up or down
+        if(direction.equals("v")){
             p.setCurrentPositionY(p.getCurrentPositionY() + amt);
+        //horizontal, right or left
+        }else if(direction.equals("h")){
+            p.setCurrentPositionX(p.getCurrentPositionX() + amt);
+        }
     }
 
     /* 
@@ -34,22 +51,7 @@ public class Movement {
 
     // Across
 
-    //combined all the across methods
-    public static void moveAcross(Player p, int amt, String direction){
-        //up
-        if(amt > 0 && direction.equals("v")){
-            p.setCurrentPositionY(p.getCurrentPositionY() + amt);
-        //down
-        }else if(amt <= 0 && direction.equals("v")){
-            p.setCurrentPositionY(p.getCurrentPositionY() + amt);
-        //right
-        }else if(amt > 0 && direction.equals("h")){
-            p.setCurrentPositionX(p.getCurrentPositionX() + amt);   
-        //left         
-        }else if(amt <= 0 && direction.equals("h")){
-            p.setCurrentPositionX(p.getCurrentPositionX() + amt);
-        }
-    }
+    
 
     /*
     public static void moveUp(Player p, int amt) {

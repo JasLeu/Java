@@ -23,11 +23,12 @@ public class Board {
 
     // Getters
     public int getDifX(int x) {
-        System.out.println(x - this.x);
+        System.out.println("x:" + (x - this.x));
         return x - this.x;
     }
 
     public int getDifY(int y) {
+        System.out.println("y:" + (y - this.y));
         return y -  this.y;
     }
 
@@ -54,7 +55,7 @@ public class Board {
     }
 
     public static String askDiagonal(){
-        System.out.println("You can only move diagonally. Would you like to move diagonally up or down, u for up, d for down");
+        System.out.println("You can only move diagonally. Would you like to move diagonally up or down? (u for up, d for down)");
         input = sc.nextLine().toLowerCase();
         while(!checkIfString(input) || !((input.equals("u")) || input.equals("d"))){
             askDiagonal();
@@ -63,25 +64,22 @@ public class Board {
     }
 
     public static int askSpacesToMove(){
-        System.out.println("How many spaces would you like to move? negative for left/down, positive for right/up");
+        System.out.println("How many spaces would you like to move? (negative # for left/down, positive # for right/up)");
         String ans = sc.nextLine();
         while(!checkIfInt(ans)){
+            System.out.println("How many spaces would you like to move? (negative # for left/down, positive # for right/up)");
             ans = sc.nextLine();
-            askSpacesToMove();
         }
         return Integer.parseInt(ans);
     }
 
     public static boolean checkIfInt(String input) {
-        boolean isInt = true; 
         try {
-            Integer.parseInt(input); 
-            return true;
+            int integer = Integer.parseInt(input);
+            return true; 
         } catch (NumberFormatException e) {
-            //System.out.println(false);
-            isInt = false; 
+            return false; 
         }
-        return isInt;
     }
 
     public static boolean checkIfString(String input) {
@@ -104,21 +102,27 @@ public class Board {
     
     
     public static void play() {
-        // test
+
         p = new Player();
         t = new Treasure();
         
-        //p.getCoord();
         t.setLocation();
-        //t.getCoord();
-        //t.getClue(p.getCurrentPositionX(), p.getCurrentPositionY());
+        
         System.out.println("How many pieces of treasure do you want to find?\n");
-        try {
-            Treasure.setTreasureAmountGoal(Integer.parseInt(sc.nextLine()));
-        } catch (Exception e) {
-            Treasure.setTreasureAmountGoal(5);
+        String input = sc.nextLine();
+        if(Integer.parseInt(input) != 0){
+            try {
+                Treasure.setTreasureAmountGoal(Integer.parseInt(input));
+            } catch (Exception e) {
+                Treasure.setTreasureAmountGoal(5);
+            }
+            Player.getCoord();
+            ask();
+        }else{
+            System.out.println("\n Play again next time!");
+            System.exit(0);
         }
-        ask();
+        
 
 
     }
@@ -148,21 +152,22 @@ public class Board {
         }
 
         
-
-        System.out.println("Nice! " + p.getName() + " found " + p.treasureAmount() + " pieces of treasure! Play again?\n");
-        String ans = sc.nextLine();
+        p.addTreasure();
+        System.out.println("Nice! " + p.getName() + " found " + p.treasureAmount() + " pieces of treasure! Play again? (y for yes, n for no)\n");
+        String ans = sc.nextLine().toLowerCase();
         if (ans.equals("y") || ans.equals("yes")) {
             t.setLocation();
 
             boolean inComplete = true;
             while (inComplete) {
                 System.out.println("How many treasures this time?\n"); 
-                try {
-                    Treasure.setTreasureAmountGoal(p.treasureAmount() + Integer.parseInt(sc.nextLine()));
-                    inComplete = false;
-                } catch (Exception e) {}
-                
-            }
+                String input = sc.nextLine();
+                    try {
+                        Treasure.setTreasureAmountGoal(p.treasureAmount() + Integer.parseInt(input));
+                        inComplete = false;
+                    } catch (Exception e) {}
+             }
+            
             
 
         } else {System.exit(0);}

@@ -43,7 +43,7 @@ public class Player extends Movement {
     }
 
     public static String getCoord() {
-        System.out.println("(" + currentPositionX + ", " + currentPositionY + ")");
+        System.out.println("\nYour current location: (" + currentPositionX + ", " + currentPositionY + ")");
         return "(" + currentPositionX + ", " + currentPositionY + ")";
     }
 

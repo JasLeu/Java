@@ -49,7 +49,7 @@ public class Treasure {
 
 
     public static String getCoord() {
-        System.out.println("(" + currentPositionX + ", " + currentPositionY + ")");
+        System.out.println("The treasure's location: (" + currentPositionX + ", " + currentPositionY + ")");
         return "(" + currentPositionX + ", " + currentPositionY + ")";
     }
 }
