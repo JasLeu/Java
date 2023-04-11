@@ -1,13 +1,13 @@
 import java.lang.Math;
 
-import javax.swing.plaf.synth.SynthOptionPaneUI;
 
 public class Treasure {
     private int numTreasures = 0;
+    private static int treasureAmountGoal;
     private String location;
     private Board b = new Board();
-    private int currentPositionX;
-    private int currentPositionY;
+    private static int currentPositionX;
+    private static int currentPositionY;
     
 
     public void getClue(int x, int y) {
@@ -21,10 +21,16 @@ public class Treasure {
         
     }
 
-    
+    public static void setTreasureAmountGoal(int amt) {
+        treasureAmountGoal = amt;
+    }
 
-    public boolean treasureFound() {
-        if ((int) (Math.random() * 100) + 1 > 50) {
+    public int treasureAmountGoal() {
+        return treasureAmountGoal;
+    }
+
+    public boolean treasureFound(Player p) {
+        if (Player.getCoord().equals(getCoord())) {
             addTreasure();
             return true;
         } else {return false;}
@@ -42,7 +48,8 @@ public class Treasure {
     }
 
 
-    public void getCoord() {
+    public static String getCoord() {
         System.out.println("(" + currentPositionX + ", " + currentPositionY + ")");
+        return "(" + currentPositionX + ", " + currentPositionY + ")";
     }
 }

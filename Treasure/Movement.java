@@ -1,25 +1,12 @@
-public class Movement2 {
+public class Movement {
     
     // Diagonals
     //combined all the diagonal methods
     public static void moveDiagonal(Player p, int amt, String direction){
         //right, up
-        if(amt > 0 && direction.equals("u")){
+        
             p.setCurrentPositionX(p.getCurrentPositionX() + amt);
             p.setCurrentPositionY(p.getCurrentPositionY() + amt);
-        //left up
-        }else if(amt <= 0 && direction.equals("u")){
-            p.setCurrentPositionX(p.getCurrentPositionX() - amt);
-            p.setCurrentPositionY(p.getCurrentPositionY() + amt);
-        //right, down
-        }else if(amt > 0 && direction.equals("d")){
-            p.setCurrentPositionX(p.getCurrentPositionX() + amt);
-            p.setCurrentPositionY(p.getCurrentPositionY() - amt);
-        //left, down
-        }else if(amt <= 0 && direction.equals("d")){
-            p.setCurrentPositionX(p.getCurrentPositionX() - amt);
-            p.setCurrentPositionY(p.getCurrentPositionY() - amt);
-        }
     }
 
     /* 
@@ -54,13 +41,13 @@ public class Movement2 {
             p.setCurrentPositionY(p.getCurrentPositionY() + amt);
         //down
         }else if(amt <= 0 && direction.equals("v")){
-            p.setCurrentPositionY(p.getCurrentPositionY() - amt);
+            p.setCurrentPositionY(p.getCurrentPositionY() + amt);
         //right
         }else if(amt > 0 && direction.equals("h")){
             p.setCurrentPositionX(p.getCurrentPositionX() + amt);   
         //left         
         }else if(amt <= 0 && direction.equals("h")){
-            p.setCurrentPositionX(p.getCurrentPositionX() - amt);
+            p.setCurrentPositionX(p.getCurrentPositionX() + amt);
         }
     }
 

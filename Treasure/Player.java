@@ -1,9 +1,9 @@
 import java.util.Scanner;
 
-public class Player extends Movement2 {
+public class Player extends Movement {
     private String name;
-    private int currentPositionX;
-    private int currentPositionY;
+    private static int currentPositionX;
+    private static int currentPositionY;
     private int numTreasures = 0;
     private Scanner sc = new Scanner(System.in);
 
@@ -38,8 +38,13 @@ public class Player extends Movement2 {
         return currentPositionY;
     }
 
-    public void getCoord() {
+    public int treasureAmount() {
+        return numTreasures;
+    }
+
+    public static String getCoord() {
         System.out.println("(" + currentPositionX + ", " + currentPositionY + ")");
+        return "(" + currentPositionX + ", " + currentPositionY + ")";
     }
 
     public String getName() {
