@@ -2,6 +2,9 @@ import java.lang.Math;
 import java.util.Scanner;
 import java.util.ArrayList;
 
+/**
+ * An entire plane of where the Player and Treasure could be...
+ */
 public class Board {
 
     // Instance variables 
@@ -16,7 +19,9 @@ public class Board {
     private static ArrayList<String> treasureLocationStrings = new ArrayList<String>();
 
 
-    // Constructors
+    /**
+     * Constructor - Sets the Player at a random location in a 50 x 50 plane.
+     */
     public Board() {
         x = (int) (Math.random() * 50);
         y = (int) (Math.random() * 50);

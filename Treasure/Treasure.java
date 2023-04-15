@@ -1,5 +1,8 @@
 import java.lang.Math;
 
+/**
+ * Treasure class, with the location of the treasure
+ */
 public class Treasure {
     private static int treasureAmountGoal;
     private static Board b = new Board();

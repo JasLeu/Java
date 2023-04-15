@@ -1,3 +1,6 @@
+/**
+ * A class that sets where the Player is after moving.
+ */ 
 public class Movement {
     
     // Diagonals

@@ -1,6 +1,11 @@
+/**
+ * Runs the game
+ */
 public class Runner {
     
-    // Main method which runs the game
+    /**
+     * Main Method
+     */
     public static void main(String[] args) {
         Board.play();
     }

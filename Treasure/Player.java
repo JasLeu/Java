@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 /**
- * Player class, a subclass of the Movement class
+ * Player class, a subclass of the Movement class. 
  * Sets the player's location and actions
  */
 public class Player extends Movement {
@@ -11,7 +11,9 @@ public class Player extends Movement {
     private int numTreasures = 0;
     private Scanner sc = new Scanner(System.in);
 
-    // Gets player name and sets them at a random (x,y) position
+    /**
+     * Gets player name and sets them at a random (x, y) position
+     */
     public Player () {
         System.out.print("Name: ");
         name = sc.nextLine();
