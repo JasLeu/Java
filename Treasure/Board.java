@@ -45,25 +45,27 @@ public class Board {
         this.y = y;
     }
 
-
+    // Getting input for where the player wants to move up or down
     public static String askAcross(){
         System.out.println("You can only move across. Would you like to move vertically or horizontally? (v for vertical, h for horizontal)");
         input = sc.nextLine().toLowerCase();
         while(!checkIfString(input) || !(input.equals("v") || input.equals("h"))){
-            askAcross();
+            askAcross(); // Recursive call to askAcross and returning the user input
         }
         return input;
     }
 
+    // Getting input for where the player wants to move diagonally
     public static String askDiagonal(){
         System.out.println("You can only move diagonally. Would you like to move diagonally up or down? (u for up, d for down)");
         input = sc.nextLine().toLowerCase();
         while(!checkIfString(input) || !((input.equals("u")) || input.equals("d"))){
-            askDiagonal();
+            askDiagonal(); // Recursive call to askDiagonal and returning the user input
         }
         return input;
     }
 
+    // Getting input for how many spaces the player wants to move
     public static int askSpacesToMove(){
         System.out.println("How many spaces would you like to move? (negative # for left/down, positive # for right/up)");
         String ans = sc.nextLine();
@@ -74,6 +76,7 @@ public class Board {
         return Integer.parseInt(ans);
     }
 
+    // Checking if the user input is an int
     public static boolean checkIfInt(String input) {
         try {
             Integer.parseInt(input);
@@ -83,6 +86,7 @@ public class Board {
         }
     }
 
+    // Checking if the user input is a string
     public static boolean checkIfString(String input) {
         boolean isString = false; 
 
@@ -101,7 +105,7 @@ public class Board {
         return isString;
     }
     
-    
+    // Creating a new player and treasure to play
     public static void play() {
 
         p = new Player();
@@ -128,15 +132,14 @@ public class Board {
 
     }
 
+    // Gets a random number to see what direction the player goes in
     public static void ask() {
         randDirection = (int) (Math.random() *2);
         System.out.println();
 
         if(randDirection == 0){
             direction = askDiagonal();
-            //System.out.println("1");
             spaces = askSpacesToMove();
-            //System.out.println("2");
             p.moveDiagonal(spaces, direction);
         } else {
             direction = askAcross();
@@ -144,24 +147,24 @@ public class Board {
             p.moveAcross(spaces, direction);        
         }
 
-        
+        // Checks to see if the treasure was found
         if (!t.treasureFound(p)) {
             t.getClue(p.getCurrentPositionX(), p.getCurrentPositionY());
             ask();
-        } else if (p.treasureAmount() < t.treasureAmountGoal()) {
+        } else if (p.getTreasureAmount() < t.treasureAmountGoal()) {
             p.addTreasure();
             Board.clearScreen();
             System.out.println("You found treasure at " + Treasure.getCoord() + ".");
             t.setLocation();
-            System.out.println("You have " + p.treasureAmount() + " piece(s) of treasure. " + (t.treasureAmountGoal() - p.treasureAmount()) + " piece(s) left.");
+            System.out.println("You have " + p.getTreasureAmount() + " piece(s) of treasure. " + (t.treasureAmountGoal() - p.getTreasureAmount()) + " piece(s) left.");
             treasureLocationStrings.add(Treasure.getCoord());
-            if (p.treasureAmount() != t.treasureAmountGoal()) {
+            if (p.getTreasureAmount() != t.treasureAmountGoal()) {
                 ask();
             }
         } 
 
-        
-        System.out.println("\nNice! In total, " + p.getName() + " found " + p.treasureAmount() + " piece(s) of treasure! Play again? (y for yes, n for no)\n");
+        // Prints out how many pieces of treasure the player found and ask if they want to play again
+        System.out.println("\nNice! In total, " + p.getName() + " found " + p.getTreasureAmount() + " piece(s) of treasure! Play again? (y for yes, n for no)\n");
         String ans = sc.nextLine().toLowerCase();
         if (ans.equals("y") || ans.equals("yes")) {
             t.setLocation();
@@ -171,7 +174,7 @@ public class Board {
                 System.out.println("How many treasures this time?\n"); 
                 String input = sc.nextLine();
                     try {
-                        t.setTreasureAmountGoal(p.treasureAmount() + Integer.parseInt(input));
+                        t.setTreasureAmountGoal(p.getTreasureAmount() + Integer.parseInt(input));
                         System.out.println("Treasure goal: " + t.treasureAmountGoal());
                         inComplete = false;
                     } catch (Exception e) {}
@@ -183,10 +186,12 @@ public class Board {
         
     }
 
+    // Returns a random number within a given range and the minimum number
     public static int randomNum(int range, int min) {
         return (int) (Math.random() * range) + min;
     }
 
+    // Clearing the screen
     public static void clearScreen() {  
         System.out.print("\033[H\033[2J");  
         System.out.flush();  
