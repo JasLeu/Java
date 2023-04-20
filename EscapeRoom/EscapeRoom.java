@@ -58,16 +58,41 @@ public class EscapeRoom
 
     Scanner in = new Scanner(System.in);
     String[] validCommands = { "right", "left", "up", "down", "r", "l", "u", "d",
-    "jump", "jr", "jumpleft", "jl", "jumpup", "ju", "jumpdown", "jd",
+    "jumpright", "jr", "jumpleft", "jl", "jumpup", "ju", "jumpdown", "jd",
     "pickup", "p", "quit", "q", "replay", "help", "?"};
   
     // set up game
     boolean play = true;
+    game.setPrizes(10);
+    game.setTraps(5);
+    
     while (play)
     {
       /* TODO: get all the commands working */
 	  /* Your code here */
+      String cmd = UserInput.getValidInput(validCommands);
       
+      if (cmd.equals("right") || cmd.equals("r")) {
+        game.movePlayer(60, 0);
+      } else if (cmd.equals("left") || cmd.equals("l")) {
+        game.movePlayer(-60, 0);
+      } else if (cmd.equals("up") || cmd.equals("u")) {
+        game.movePlayer(0, -60);
+      } else if (cmd.equals("down") || cmd.equals("d")) {
+        game.movePlayer(0, 60);
+      } else if (cmd.equals("jr") || cmd.equals("jumpright")) {
+        game.movePlayer(120, 0);
+      } else if (cmd.equals("jl")  || cmd.equals("jumpleft")) {
+        game.movePlayer(-120, 0);
+      } else if (cmd.equals("ju") || cmd.equals("jumpup")) {
+        game.movePlayer(0, -120);
+      } else if (cmd.equals("jd") || cmd.equals("jumpdown")) {
+        game.movePlayer(0, 120);
+      } else if (cmd.equals("pickup") || cmd.equals("p")) {
+        game.pickupPrize();
+      } else if (cmd.equals("quit") || cmd.equals("q")) {
+        break;
+      }
       
     }
 

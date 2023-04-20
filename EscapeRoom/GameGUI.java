@@ -70,19 +70,19 @@ public class GameGUI extends JComponent
   {
     
     try {
-      bgImage = ImageIO.read(new File("EscapeRoom\\grid.png"));      
+      bgImage = ImageIO.read(new File("grid.png"));      
     } catch (Exception e) {
       System.err.println("Could not open file grid.png");
     }      
     try {
-      prizeImage = ImageIO.read(new File("EscapeRoom\\coin.png"));      
+      prizeImage = ImageIO.read(new File("coin.png"));      
     } catch (Exception e) {
       System.err.println("Could not open file coin.png");
     }
   
     // player image, student can customize this image by changing file on disk
     try {
-      player = ImageIO.read(new File("EscapeRoom\\player.png"));      
+      player = ImageIO.read(new File("player.png"));      
     } catch (Exception e) {
      System.err.println("Could not open file player.png");
     }
@@ -151,10 +151,10 @@ public class GameGUI extends JComponent
       for (Rectangle r: walls)
       {
         // this rect. location
-        int startX =  (int)r.getX();
-        int endX  =  (int)r.getX() + (int)r.getWidth();
-        int startY =  (int)r.getY();
-        int endY = (int) r.getY() + (int)r.getHeight();
+        int startX =  (int) r.getX();
+        int endX  =  (int) r.getX() + (int)r.getWidth();
+        int startY =  (int) r.getY();
+        int endY = (int)  r.getY() + (int)r.getHeight();
 
         // (Note: the following if statements could be written as huge conditional but who wants to look at that!?)
         // moving RIGHT, check to the right
