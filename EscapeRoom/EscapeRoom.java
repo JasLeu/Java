@@ -47,6 +47,8 @@ public class EscapeRoom
     
     GameGUI game = new GameGUI();
     game.createBoard();
+    game.setPrizes(10);
+    game.setTraps(5);
 
     // size of move
     int m = 60; 
@@ -63,8 +65,7 @@ public class EscapeRoom
   
     // set up game
     boolean play = true;
-    game.setPrizes(10);
-    game.setTraps(5);
+
     
     while (play)
     {
@@ -73,30 +74,38 @@ public class EscapeRoom
       String cmd = UserInput.getValidInput(validCommands);
       
       if (cmd.equals("right") || cmd.equals("r")) {
-        game.movePlayer(60, 0);
+        score += game.movePlayer(m, 0);
       } else if (cmd.equals("left") || cmd.equals("l")) {
-        game.movePlayer(-60, 0);
+        score += game.movePlayer(-m, 0);
       } else if (cmd.equals("up") || cmd.equals("u")) {
-        game.movePlayer(0, -60);
+        score += game.movePlayer(0, -m);
       } else if (cmd.equals("down") || cmd.equals("d")) {
-        game.movePlayer(0, 60);
+        score += game.movePlayer(0, m);
       } else if (cmd.equals("jr") || cmd.equals("jumpright")) {
-        game.movePlayer(120, 0);
+        score += game.movePlayer(2 * m, 0);
       } else if (cmd.equals("jl")  || cmd.equals("jumpleft")) {
-        game.movePlayer(-120, 0);
+        score += game.movePlayer(-2 * m, 0);
       } else if (cmd.equals("ju") || cmd.equals("jumpup")) {
-        game.movePlayer(0, -120);
+        score += game.movePlayer(0, -2 * m);
       } else if (cmd.equals("jd") || cmd.equals("jumpdown")) {
-        game.movePlayer(0, 120);
+        score += game.movePlayer(0, 2 * m);
       } else if (cmd.equals("pickup") || cmd.equals("p")) {
-        game.pickupPrize();
+        score += game.pickupPrize();
       } else if (cmd.equals("quit") || cmd.equals("q")) {
-        break;
+        System.out.println("Replay? ");
+        String ans = in.nextLine();
+        if (ans.equals("y") || ans.equals("yes")) {
+          System.out.println(game.replay());
+        } else {
+          break;
+        }
+      } else if (cmd.equals("?") || cmd.equals("help")) {
+        System.out.println("Valid commands: " + validCommands.toString());
+      } 
+      if (game.isTrap(0, 0)) {
+        score += game.springTrap(0, 0);
       }
-      
     }
-
-  
 
     score += game.endGame();
 

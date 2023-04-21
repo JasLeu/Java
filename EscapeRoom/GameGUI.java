@@ -13,6 +13,8 @@ import javax.imageio.ImageIO;
 
 import java.util.Random;
 
+import java.util.Scanner;
+
 /**
  * A Game board on which to place and move players.
  * 
