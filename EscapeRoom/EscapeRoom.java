@@ -52,12 +52,11 @@ public class EscapeRoom
 
     // size of move
     int m = 60; 
-    // individual player moves
-    int px = 0;
-    int py = 0; 
     
+    // total score in the escape room
     int score = 0;
-
+    
+    // to get input
     Scanner in = new Scanner(System.in);
     String[] validCommands = { "right", "left", "up", "down", "r", "l", "u", "d",
     "jumpright", "jr", "jumpleft", "jl", "jumpup", "ju", "jumpdown", "jd",
@@ -72,7 +71,10 @@ public class EscapeRoom
       /* TODO: get all the commands working */
 	  /* Your code here */
       String cmd = UserInput.getValidInput(validCommands);
-      
+      /*
+       * Lines 77 - 92:
+       * modifies the player's position based on the direction input given in the console
+       */
       if (cmd.equals("right") || cmd.equals("r")) {
         score += game.movePlayer(m, 0);
       } else if (cmd.equals("left") || cmd.equals("l")) {
@@ -90,27 +92,28 @@ public class EscapeRoom
       } else if (cmd.equals("jd") || cmd.equals("jumpdown")) {
         score += game.movePlayer(0, 2 * m);
       } else if (cmd.equals("pickup") || cmd.equals("p")) {
-        score += game.pickupPrize();
+        score += game.pickupPrize(); // tries to pick up the price if it exists in the current tile
       } else if (cmd.equals("quit") || cmd.equals("q")) {
         System.out.println("Replay? ");
-        String ans = in.nextLine();
-        if (ans.equals("y") || ans.equals("yes")) {
-          System.out.println(game.replay());
+        String ans = in.nextLine(); // gets user input
+        if (ans.equals("y") || ans.equals("yes")) { // sees if the player wants to play the game again
+          System.out.println(game.replay()); // if "y" or "yes" was inputted, restarts the game
         } else {
-          break;
+          play = false; // ends the game otherwise
         }
       } else if (cmd.equals("?") || cmd.equals("help")) {
-        System.out.println("Valid commands: " + validCommands.toString());
+        System.out.println("Valid commands: " + validCommands.toString()); // shows a list of valid commands to use
       } 
       if (game.isTrap(0, 0)) {
-        score += game.springTrap(0, 0);
+        score += game.springTrap(0, 0); // springs the trap if the tile the player landed on is a trap
       }
     }
+    in.close(); // closes the Scanner
+    score += game.endGame(); // "ends" the game while returning a number to add onto the score 
 
-    score += game.endGame();
-
-    System.out.println("score=" + score);
-    System.out.println("steps=" + game.getSteps());
+    System.out.println("score=" + score); // shows the score
+    System.out.println("steps=" + game.getSteps()); // shows the amount of steps taken
+    
   }
 }
 
