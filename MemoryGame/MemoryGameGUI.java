@@ -90,11 +90,17 @@ public class MemoryGameGUI extends JFrame
   public String playSequence(String[] sequence, double delay)
   {
     delay *= 1000;
+    JFrame frame = new JFrame();
+    int length;
+    do {
+      length = Integer.parseInt(JOptionPane.showInputDialog(frame, "How many letters do you want to memorize? (Up to " + sequence.length + " characters)"));
+    } while (length > sequence.length);
+    
     JOptionPane.showMessageDialog(this, "Click when ready!", "Ready to Play?", JOptionPane.PLAIN_MESSAGE);
 
     // show each memory strings on a botton
     int buttonNum = -1; 
-    for (int i = 0; i < sequence.length; i++ )
+    for (int i = 0; i < length; i++ )
     {
       if (playRandom)
       {
@@ -129,10 +135,10 @@ public class MemoryGameGUI extends JFrame
       gameButtons[buttonNum].setText("");
     }
     
-    JFrame frame = new JFrame();
+    //JFrame frame = new JFrame();
     String seq = JOptionPane.showInputDialog(frame, "What is the sequence?");
 
-    return seq;
+    return seq + "" + length;
   }
 
   /**
